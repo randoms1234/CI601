@@ -1,12 +1,22 @@
 import React from "react";
-import './App.css'
-import Results from "./Results";
+//import './App.css'
+import Results from "./Results.js";
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            name: '',
+            weather: [],
+            temp: ''
+
+        };
+    }
     render = () =>{
         return (
             <div>
                 <header className="App-header">
+
                     <h1>Happy Thoughts</h1>
 
                 <p>How are you Feeling today?</p>
@@ -30,41 +40,32 @@ class App extends React.Component {
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
+
                 </header>
                 <Results state={this.state} />
+
             </div>
         );
 
     }
 
-    constructor(props) {
-        super(props);
-        this.state ={
-            query: '',
-            loading: false,
-            records: []
 
-        };
-    }
     handleSubmit = async (evt) => {
         evt.preventDefault();
         let mood = document.querySelector('input[name="mood"]:checked').value;
         let additionalInfo = document.querySelector('input[name="additionalInfo"]').value;
-
-        if(mood.length > 0 && additionalInfo.length > 0) {
-            this.setState({
-                loading: true
-            });
-        }
+        //this.setState({ loading: true });
 
 
-        const url = 'https://api.openweathermap.org/data/3.0/onecall?lat=35&lon=145&appid=1988bc65fa708ceb2a9a23049f92ae92';
+        const url = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=40305c228a4b170bbb1f1c17d8dd3cf3';
         try{
             const response = await fetch(url);
             const jsonData = await response.json();
+            //console.log(jsonData);
             this.setState({
-                loading: false,
-                records: jsonData.records,
+                name: jsonData.name,
+                weather: jsonData.weather,
+                temp: jsonData.main.temp,
             });
 
 
@@ -75,16 +76,19 @@ class App extends React.Component {
 
             //let json = JSON.stringify(formResponses);
             localStorage.setItem("formResponses", JSON.stringify(formResponses));
-            //console.log(json);
-            //console.log(jsonData);*/
+            //console.log(json);*/
+            //console.log(jsonData);
         } catch(err){
             console.log(err);
             this.setState({
-                loading: false,
-                records: []
+                name:'',
+                weather: [],
+                temp: ''
             });
         }
     }
 }
 
 export default App;
+
+
