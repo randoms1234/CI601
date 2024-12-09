@@ -1,5 +1,5 @@
 import React from "react";
-//import './App.css'
+import './App.css'
 import Results from "./Results.js";
 
 class App extends React.Component {
@@ -8,7 +8,9 @@ class App extends React.Component {
         this.state ={
             name: '',
             weather: [],
-            temp: ''
+            temp: '',
+            mood: this.mood,
+            additionalInfo: this.additionalInfo
 
         };
     }
@@ -20,26 +22,25 @@ class App extends React.Component {
                     <h1>Happy Thoughts</h1>
 
                 <p>How are you Feeling today?</p>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        <input type="radio" value="Happy" id="Happy" name="mood"/>
-                        Happy
-                    </label>
-                    <label>
-                        <input type="radio" value="Ok" id="Ok" name="mood"/>
-                        Ok
-                    </label>
-                    <label>
-                        <input type="radio" value="Sad" id="Sad" name="mood"/>
-                        Sad
-                    </label>
-
-                    <label>
-                        Additional Info:
-                        <input type="text" id="additionalInfo" name="additionalInfo"/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            <input type="radio" value="Happy" id="Happy" name="mood" required/>
+                            Happy
+                        </label>
+                        <label>
+                            <input type="radio" value="Ok" id="Ok" name="mood" required/>
+                            Ok
+                        </label>
+                        <label>
+                            <input type="radio" value="Sad" id="Sad" name="mood" required/>
+                            Sad
+                        </label>
+                        <label>
+                            Additional Info:
+                            <input type="text" id="additionalInfo" name="additionalInfo" required/>
+                        </label>
+                        <input type="submit" value="Submit"/>
+                    </form>
 
                 </header>
                 <Results state={this.state} />
@@ -54,30 +55,19 @@ class App extends React.Component {
         evt.preventDefault();
         let mood = document.querySelector('input[name="mood"]:checked').value;
         let additionalInfo = document.querySelector('input[name="additionalInfo"]').value;
-        //this.setState({ loading: true });
-
-
-        const url = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=40305c228a4b170bbb1f1c17d8dd3cf3';
+        this.setState({
+            mood: mood,
+            additionalInfo: additionalInfo
+        });
+        const url = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&APPID=40305c228a4b170bbb1f1c17d8dd3cf3';
         try{
             const response = await fetch(url);
             const jsonData = await response.json();
-            //console.log(jsonData);
             this.setState({
                 name: jsonData.name,
                 weather: jsonData.weather,
                 temp: jsonData.main.temp,
             });
-
-
-            /*let formResponses = {
-                mood: mood,
-                additionalInfo: additionalInfo
-            };
-
-            //let json = JSON.stringify(formResponses);
-            localStorage.setItem("formResponses", JSON.stringify(formResponses));
-            //console.log(json);*/
-            //console.log(jsonData);
         } catch(err){
             console.log(err);
             this.setState({
