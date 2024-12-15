@@ -1,8 +1,6 @@
 import React from "react";
 import './App.css'
 import Results from "./Results.js";
-import CyrptoJS from "crypto-js";
-import Pin from "./Pin.js";
 
 class App extends React.Component {
 
@@ -38,11 +36,11 @@ class App extends React.Component {
                             <input type="radio" value="Sad" id="Sad" name="mood" required/>
                             Sad
                         </label>
-                        <label>
-                            Additional Info:
+                        <label>  Additional Info:
                             <input type="text" id="additionalInfo" name="additionalInfo" required/>
+
                         </label>
-                        <input type="submit" value="Submit"/>
+                        <input className='btn' type="submit" value="Submit"/>
                     </form>
 
                 </header>

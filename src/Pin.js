@@ -1,5 +1,6 @@
 import React from 'react';
 import App from './App';
+import './App.css';
 
 const PIN_LENGTH = 4;
 
@@ -21,13 +22,17 @@ class Pin extends React.Component {
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Enter your Pin:
-                        <input type='password' name='pin' id='pin' required />
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
+                <header className="App-header" id='pin'>
+                    <h1>Hello!</h1>
+                    <h2>Please enter a pin to get started</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Enter/create your Pin:
+                        </label>
+                        <input type='password' name='pin' id='pin' required/>
+                        <input className='btn' type="submit" value="Submit"/>
+                    </form>
+                </header>
             </div>
         );
     }
@@ -41,7 +46,6 @@ class Pin extends React.Component {
         }
         if (!setPin){
             localStorage.setItem('pin', pin);
-            console.log(pin);
             this.setState({
                 pinSet: true,
                 pinTrue: true,
@@ -49,7 +53,6 @@ class Pin extends React.Component {
             });
         }
         else if(setPin === pin){
-            console.log("thisone");
             this.setState({
                 pinTrue: true
             });

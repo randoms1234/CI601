@@ -1,3 +1,6 @@
+body {
+  background-color: #e8f0fe;
+}
 .App {
   text-align: center;
 }
@@ -37,26 +40,49 @@
   gap: 1em;
 }
 #list-entry{
+  background-color: #DDE3FE;
   list-style: none;
   margin: 0 1em 1em 1em;
   padding: 0.5em;
   border: 1px solid black;
   border-radius: 2em;
 }
+#list-entry li{
+  padding: 0.3em;
+}
+input[type="text"]{
+  text-align: center;
+  margin: 0 0 1em 15em;
+  display: block;
+}
+input[type="submit"]{
+  margin: 0 0 0 18.3em;
+  display: block;
+}
+button, .btn{
+  padding: 0.8em;
+  border-radius: 2em;
+}
+
+
+#pin{
+  text-align: center;
+}
 
 @media screen and (max-width: 600px) { /* On small screens, display in a one column layout */
   #datalist {
+    padding: 0.2em;
     grid-template-columns: 1fr;
+  }
+  input[type="text"]{
+    margin: 1em 0 1em 5em;
+    display: block;
+  }
+  input[type="submit"]{
+    display: block;
+    margin: 0 0 1em 8.7em;
   }
 }
 
 
 
-input[type="text"],
-input[type="submit"] {
-  margin: 0 0 1em 8em;
-  display: block;
-}
-input[type="submit"]{
-  margin: 0 0 0 11.3em;
-}
