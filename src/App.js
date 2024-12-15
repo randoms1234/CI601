@@ -1,8 +1,11 @@
 import React from "react";
 import './App.css'
 import Results from "./Results.js";
+import CyrptoJS from "crypto-js";
+import Pin from "./Pin.js";
 
 class App extends React.Component {
+
     constructor(props) {
         super(props);
         this.state ={
@@ -52,6 +55,7 @@ class App extends React.Component {
 
 
     handleSubmit = async (evt) => {
+
         evt.preventDefault();
         let mood = document.querySelector('input[name="mood"]:checked').value;
         let additionalInfo = document.querySelector('input[name="additionalInfo"]').value;
