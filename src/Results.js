@@ -9,7 +9,7 @@ class Results extends React.Component {
 
     shareEntry = async (event) =>{
         const key = event.target.id;
-        const value = [deCrypt(localStorage.getItem(key), 1)];
+        const value = [localStorage.getItem(key)];
         const blob = new Blob(value, {type: 'application/json'});
         const file = new File([blob],  key+".json");
         if(!navigator.canShare){
@@ -84,11 +84,15 @@ class Results extends React.Component {
 
 function getData(callback){
     let results = [];
+    let numresults = localStorage.length
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const encyptedvalue = localStorage.getItem(key);
         if (key === 'pin'){
             continue;
+        }
+        else if(numresults < 1){
+            return
         }
         const value = deCrypt(encyptedvalue, 0)
 
@@ -102,11 +106,11 @@ function getData(callback){
         results.push(
             <li>
                 <ul id='list-entry'>
-                    <li>Location: {location}</li>
-                    <li>Temp: {temp}</li>
-                    <li>Mood: {mood}</li>
-                    <li>Additional Info: {additionalInfo}</li>
-                    <li>Date: {date} Time:{key}</li>
+                    <li><strong>Location:</strong> {location}</li>
+                    <li><strong>Temp:</strong> {temp}</li>
+                    <li><strong>Mood:</strong> {mood}</li>
+                    <li><strong>Additional Info:</strong> {additionalInfo}</li>
+                    <li><strong>Date:</strong> {date} Time:{key}</li>
                     <button onClick={callback} id={key} type='button'>Share</button>
 
                 </ul>

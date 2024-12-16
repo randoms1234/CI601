@@ -52,11 +52,11 @@ body {
 }
 input[type="text"]{
   text-align: center;
-  margin: 0 0 1em 15em;
+  margin: 0 0 0 0;
   display: block;
 }
 input[type="submit"]{
-  margin: 0 0 0 18.3em;
+  margin: 0 0 0 4.5em;
   display: block;
 }
 button, .btn{
@@ -68,6 +68,10 @@ button, .btn{
 #pin{
   text-align: center;
 }
+#pin input[type="submit"]{
+  margin: 0 0 0 5.5em;
+
+}
 
 @media screen and (max-width: 600px) { /* On small screens, display in a one column layout */
   #datalist {
@@ -75,12 +79,12 @@ button, .btn{
     grid-template-columns: 1fr;
   }
   input[type="text"]{
-    margin: 1em 0 1em 5em;
+    margin: 1em 0 0 0;
     display: block;
   }
   input[type="submit"]{
     display: block;
-    margin: 0 0 1em 8.7em;
+    margin: 0 0 0 4em;
   }
 }
 

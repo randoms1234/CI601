@@ -36,8 +36,8 @@ class App extends React.Component {
                             <input type="radio" value="Sad" id="Sad" name="mood" required/>
                             Sad
                         </label>
-                        <label>  Additional Info:
-                            <input type="text" id="additionalInfo" name="additionalInfo" required/>
+                        <br></br>
+                        <label>  <div id='pin'>Additional Info:</div> <input type="text" id="additionalInfo" name="additionalInfo" required/>
 
                         </label>
                         <input className='btn' type="submit" value="Submit"/>

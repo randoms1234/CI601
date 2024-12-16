@@ -2,8 +2,6 @@ import React from 'react';
 import App from './App';
 import './App.css';
 
-const PIN_LENGTH = 4;
-
 class Pin extends React.Component {
     constructor(props) {
         super(props);
@@ -29,6 +27,7 @@ class Pin extends React.Component {
                         <label>
                             Enter/create your Pin:
                         </label>
+                        <br></br>
                         <input type='password' name='pin' id='pin' required/>
                         <input className='btn' type="submit" value="Submit"/>
                     </form>
@@ -40,7 +39,7 @@ class Pin extends React.Component {
         event.preventDefault();
         let pin = document.querySelector('input[name="pin"]').value;
         const setPin = localStorage.getItem('pin')
-        if (pin.length !== PIN_LENGTH) {
+        if (pin.length !== 4) {
             alert('Pin must be 4 digits long');
             return
         }
